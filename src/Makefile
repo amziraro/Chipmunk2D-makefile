@@ -3,12 +3,12 @@ CHIPMUNK_OBJ = chipmunk.o cpArbiter.o cpArray.o cpBBTree.o cpBody.o cpCollision.
 
 CFLAGS = -g3 -Wall -Wextra -Wshadow -Wvla -fPIC -pedantic -I../include/
 
-default: chipmunk_static.a chipmunk.so
+default: libchipmunk_static.a libchipmunk.so
 
-chipmunk_static.a: $(CHIPMUNK_OBJ)
+libchipmunk_static.a: $(CHIPMUNK_OBJ)
 	$(AR) rcs $@ $(CHIPMUNK_OBJ)
 	
-chipmunk.so: $(CHIPMUNK_OBJ)
+libchipmunk.so: $(CHIPMUNK_OBJ)
 	$(CC) -shared -o $@ $(CHIPMUNK_OBJ)
 
 %.o: %.c
@@ -16,4 +16,4 @@ chipmunk.so: $(CHIPMUNK_OBJ)
 
 .PHONY: clean
 clean:
-	$(RM) $(CHIPMUNK_OBJ) chipmunk_static.a chipmunk_dynamic.so
+	$(RM) $(CHIPMUNK_OBJ) libchipmunk_static.a libchipmunk_dynamic.so
